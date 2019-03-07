@@ -28,6 +28,6 @@ public class PostController {
 
 	@RequestMapping("/post")
 	public String post(){
-		return "post";
+		return "admin/post";
 	}
 }

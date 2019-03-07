@@ -13,6 +13,9 @@
             <input name="postTitle" type="text" class="form-control" placeholder="标题">
 		</div>
 		<div class="form-group">
+			<input name="postUrl" type="text" class="form-control" placeholder="固定链接">
+		</div>
+		<div class="form-group">
             <textarea name="postContent" class="form-control" placeholder="内容"></textarea>
 		</div>
 		<button type="submit" value="提交" class="btn btn-primary">保存</button>

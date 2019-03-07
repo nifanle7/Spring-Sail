@@ -29,6 +29,8 @@ public class Post implements Serializable{
 
 	private String postContentMd;
 
+	private String postUrl;
+
 	@ManyToMany
 	@JoinTable(name = "t_post_category",
 			joinColumns = {@JoinColumn(name="post_id")},
