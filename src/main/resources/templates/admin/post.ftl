@@ -8,17 +8,28 @@
     <script src="http://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="/admin/posts/save" method="post">
-		<div class="form-group">
-            <input name="postTitle" type="text" class="form-control" placeholder="标题">
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<form action="/admin/posts/save" method="post">
+					<div class="form-group">
+						<label for="postTitle">标题</label>
+						<div>
+							<input name="postTitle" type="text" class="form-control" placeholder="标题" id="postTitle">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="postUrl">链接</label>
+						<input name="postUrl" type="text" class="form-control" placeholder="固定链接" id="postUrl">
+					</div>
+					<div class="form-group">
+						<label for="postContent">内容</label>
+						<textarea name="postContent" class="form-control" placeholder="内容" id="postContent"></textarea>
+					</div>
+					<button type="submit" value="提交" class="btn btn-primary">保存</button>
+				</form>
+			</div>
 		</div>
-		<div class="form-group">
-			<input name="postUrl" type="text" class="form-control" placeholder="固定链接">
-		</div>
-		<div class="form-group">
-            <textarea name="postContent" class="form-control" placeholder="内容"></textarea>
-		</div>
-		<button type="submit" value="提交" class="btn btn-primary">保存</button>
-	</form>
+	</div>
 </body>
 </html>
