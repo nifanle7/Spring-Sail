@@ -6,6 +6,8 @@ import com.uncoverman.sail.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostImpl implements PostService {
 
@@ -15,5 +17,25 @@ public class PostImpl implements PostService {
 	@Override
 	public Post savePost(Post post) {
 		return postRepository.save(post);
+	}
+
+	@Override
+	public List<Post> findAllPosts() {
+		return postRepository.findAll();
+	}
+
+//	@Override
+//	public Post updatePost(Post post) {
+//		Post postTmp = postRepository.findById(post.getPostId());
+//	}
+//
+//	@Override
+//	public Post findById(Long postId) {
+//		return postRepository.findById(postId);
+//	}
+
+	@Override
+	public void deletePost(Long postId) {
+		postRepository.deleteById(postId);
 	}
 }

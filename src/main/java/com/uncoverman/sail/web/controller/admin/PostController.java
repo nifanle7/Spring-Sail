@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -23,11 +24,17 @@ public class PostController {
 	public ResponseBo save(@ModelAttribute Post post, HttpSession httpSession){
 		log.info(post.getPostTitle());
 		postService.savePost(post);
-		return ResponseBo.ok("成功");
+		return ResponseBo.ok("插入成功");
 	}
 
 	@RequestMapping("/post")
 	public String post(){
 		return "admin/post";
+	}
+
+	@RequestMapping("/postList")
+	@ResponseBody
+	public List<Post> findAllPost(){
+		return postService.findAllPosts();
 	}
 }

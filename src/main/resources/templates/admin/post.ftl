@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<form action="/admin/posts/save" method="post">
+				<form id="postForm">
 					<div class="form-group">
 						<label for="postTitle">标题</label>
 						<div>
@@ -30,7 +30,7 @@
 						<label for="postContent">内容</label>
 						<textarea name="postContent" class="form-control" placeholder="内容" id="postContent"></textarea>
 					</div>
-					<button type="submit" value="提交" class="btn btn-primary" data-toggle="modal" data-target="#myModal">保存</button>
+					<button type="submit" class="btn btn-primary" onclick="savePost();" data-toggle="modal" data-target="#myModal">保存</button>
 				</form>
 			</div>
 
@@ -64,9 +64,25 @@
 	</div>
 </body>
 
-<#--<script type="application/javascript">-->
-	<#--function () {-->
-		<#---->
-    <#--}-->
-<#--</script>-->
+<script type="application/javascript">
+	function savePost() {
+		$.ajax({
+			url:"/admin/posts/save",
+			type:"post",
+			data:$("#postForm").serialize(),//formId
+			dataType: "json",//预期服务器返回的数据类型
+			contentType: "application/x-www-form-urlencoded",//自动封装为对象，不能application/json
+			success: function (result) {
+				if (result.code="0") {
+					alert(result.msg);
+				} else {
+					alert("失败");
+				}
+			}
+			error: function () {
+				alert("异常");
+            }
+		});
+	}
+</script>
 </html>
