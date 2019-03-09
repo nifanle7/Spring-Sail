@@ -13,28 +13,35 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/posts")
+@RequestMapping("/admin/post")
 public class PostController {
 
 	@Autowired
 	private PostService postService;
 
-	@RequestMapping("/save")
-	@ResponseBody
-	public ResponseBo save(@ModelAttribute Post post, HttpSession httpSession){
-		log.info(post.getPostTitle());
-		postService.savePost(post);
-		return ResponseBo.ok("插入成功");
+	@RequestMapping("")
+	public String index() {
+		return "admin/post_list";
 	}
 
-	@RequestMapping("/post")
-	public String post(){
-		return "admin/post";
-	}
-
-	@RequestMapping("/postList")
+	@RequestMapping("/list")
 	@ResponseBody
-	public List<Post> findAllPost(){
+	public List<Post> findAllPost() {
 		return postService.findAllPosts();
 	}
+
+	@RequestMapping("/add")
+	@ResponseBody
+	public ResponseBo save(@ModelAttribute Post post, HttpSession httpSession) {
+		log.info(post.getPostTitle());
+		postService.savePost(post);
+		return ResponseBo.ok("新增成功");
+	}
+
+	@RequestMapping("/addPage")
+	public String addPage() {
+		return "admin/post_edit";
+	}
+
 }
+
