@@ -29,6 +29,10 @@ public class Post implements Serializable{
 
 	private String postContentMd;
 
+	private String postSummary;
+
+	private String postThumbnail;
+
 	private String postUrl;
 
 	@ManyToMany
