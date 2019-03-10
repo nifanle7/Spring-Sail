@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -20,14 +21,17 @@ public class PostController {
 	private PostService postService;
 
 	@RequestMapping("")
-	public String index() {
+	public String index(HttpServletRequest request) {
+		List<Post> postList = postService.findAllPosts();
+		request.setAttribute("postList",postList);
 		return "admin/post_list";
 	}
 
 	@RequestMapping("/list")
 	@ResponseBody
 	public List<Post> findAllPost() {
-		return postService.findAllPosts();
+		List<Post> postList = postService.findAllPosts();
+		return postList;
 	}
 
 	@RequestMapping("/add")

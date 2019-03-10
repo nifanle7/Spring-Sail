@@ -11,24 +11,37 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row clearfix">
+	<div class="container-fluid">
+		<div class="row-fluid">
 			<div class="col-md-12 column">
-
-				<table border="1">
-					<tr>
-						<th>标题</th>
-						<th>摘要</th>
-					</tr>
-					<tr  th:each="post,postStat : ${postList}">
-						<td th:text="${post.postTitle}">Onions</td>
-						<td th:text="${post.postSummary}">test@test.com.cn</td>
-					</tr>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>操作</th>
+							<th>标题</th>
+							<th>摘要</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr  th:each="post : ${postList}">
+							<td>
+								<button class="btn btn-primary btn-sm" onclick="#">修改</button>
+								<button class="btn btn-danger btn-sm" onclick="#">删除</button>
+							</td>
+							<td th:text="${post.postTitle}">标题</td>
+							<td th:text="${post.postSummary}">摘要</td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
-
 		</div>
 	</div>
 </body>
+
+<script>
+	$(function(){
+
+	});
+</script>
 
 </html>
