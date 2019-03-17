@@ -1,6 +1,11 @@
 package com.uncoverman.sail.web.controller.admin;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.uncoverman.sail.common.controller.BaseController;
 import com.uncoverman.sail.model.domain.Post;
+import com.uncoverman.sail.model.dto.JsonResult;
+import com.uncoverman.sail.model.dto.QueryRequest;
 import com.uncoverman.sail.model.dto.ResponseBo;
 import com.uncoverman.sail.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +15,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 @Slf4j
 @Controller
 @RequestMapping("/admin/post")
-public class PostController {
+public class PostController extends BaseController{
 
 	@Autowired
 	private PostService postService;
@@ -37,7 +46,6 @@ public class PostController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public ResponseBo save(@ModelAttribute Post post, HttpSession httpSession) {
-		log.info(post.getPostTitle());
 		postService.savePost(post);
 		return ResponseBo.ok("新增成功");
 	}
@@ -46,6 +54,29 @@ public class PostController {
 	public String addPage() {
 		return "admin/post_edit";
 	}
+
+	@RequestMapping("/pageinfo")
+	@ResponseBody
+	public  Map<String,Object> postList(QueryRequest request){
+		PageHelper.startPage(request.getPageNum(),request.getPageSize());
+		List<Post> postList = GetPostList();
+		PageInfo<Post> pageInfo = new PageInfo<>(postList);
+		return getDataTable(pageInfo);
+	}
+
+	public List<Post> GetPostList() {
+		List<Post> postList = new ArrayList<Post>();
+		Post post1 = new Post();
+		post1.setPostId(8L);
+		post1.setPostContent("XX");
+		postList.add(post1);
+		Post post2 = new Post();
+		post2.setPostId(7L);
+		post2.setPostContent("YY");
+		postList.add(post2);
+		return postList;
+	}
+
 
 }
 

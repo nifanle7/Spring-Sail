@@ -4,6 +4,10 @@ import com.uncoverman.sail.model.domain.Post;
 import com.uncoverman.sail.repository.PostRepository;
 import com.uncoverman.sail.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +28,11 @@ public class PostImpl implements PostService {
 		return postRepository.findAll();
 	}
 
+	@Override
+	public Page<Post> findAllPosts(Integer page,Integer size) {
+		Pageable pageable = new PageRequest(page,size, Sort.Direction.ASC,"postId");
+		return postRepository.findAll(pageable);
+	}
 //	@Override
 //	public Post updatePost(Post post) {
 //		Post postTmp = postRepository.findById(post.getPostId());
