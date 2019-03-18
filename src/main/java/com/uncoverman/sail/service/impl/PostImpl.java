@@ -29,8 +29,7 @@ public class PostImpl implements PostService {
 	}
 
 	@Override
-	public Page<Post> findAllPosts(Integer page,Integer size) {
-		Pageable pageable = new PageRequest(page,size, Sort.Direction.ASC,"postId");
+	public Page<Post> findAllPosts(Pageable pageable) {
 		return postRepository.findAll(pageable);
 	}
 //	@Override

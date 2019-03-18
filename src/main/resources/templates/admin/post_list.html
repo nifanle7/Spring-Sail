@@ -3,11 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-    <script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
+	<!--引入bootstrap、bootstrap-table、jquery-->
+	<script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
 	<script src="http://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-
-	<script src="/js/bootstrap-table/bootstrap-table.js"></script>
+	<script src="/js/bootstrap-table/bootstrap-table.min.js"></script>
 	<script src="/js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<link href="/css/bootstrap-table/bootstrap-table.css" rel="stylesheet">
 	<link href="/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +16,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-				<table class="table" id="postTable">
+				<table class="table" id="table">
 					<thead>
 						<tr>
 							<th>操作</th>
@@ -85,7 +84,7 @@ $(function() {
 var TableInit = function () {
 	var bTableInit = new Object();
     bTableInit.Init = function () {
-        $('$#postTable').bootstrapTable({
+        $('#postTable').bootstrapTable({
             url: '/admin/post/pageinfo',
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -110,7 +109,6 @@ var TableInit = function () {
             showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                  //是否显示父子表
-        	contentType: "application/x-www-form-urlencoded",
             columns: [{
                 checkbox: true
             }, {
@@ -123,7 +121,7 @@ var TableInit = function () {
                 field: 'postUrl',
                 title: '链接'
             }, {
-                field: 'postSummray',
+                field: 'postSummary',
                 title: '摘要'
             },]
 
@@ -132,10 +130,10 @@ var TableInit = function () {
 
     //得到查询的参数
     bTableInit.queryParams = function (params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-            limit: params.limit,   //页面大小
-            offset: params.offset, //页码
-            postname: $("#txt_search_postname").val()
+        var temp = {   //这里的键的名字和控制器的变量名必须一直
+            pageSize: params.limit,   //页面大小，变量名与控制器一致
+            pageNum: params.offset / params.limit + 1, //页码，变量名与控制器一致
+//            postname: $("#txt_search_postname").val(),
         };
         return temp;
     };

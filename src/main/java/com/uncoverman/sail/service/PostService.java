@@ -13,6 +13,6 @@ public interface PostService {
 //	Post findById(Long postId);
 	void deletePost(Long postId);
 	List<Post> findAllPosts();
-	Page<Post> findAllPosts(Integer page,Integer size);
+	Page<Post> findAllPosts(Pageable pageable);
 
 }
