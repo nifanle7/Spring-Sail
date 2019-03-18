@@ -50,5 +50,4 @@ public class Post implements Serializable{
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
 
-
 }

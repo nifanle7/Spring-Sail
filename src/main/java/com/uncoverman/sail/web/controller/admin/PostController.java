@@ -38,13 +38,6 @@ public class PostController extends BaseController{
 		return "admin/post_list";
 	}
 
-	@RequestMapping("/list")
-	@ResponseBody
-	public List<Post> findAllPost() {
-		List<Post> postList = postService.findAllPosts();
-		return postList;
-	}
-
 	@RequestMapping("/add")
 	@ResponseBody
 	public ResponseBo save(@ModelAttribute Post post, HttpSession httpSession) {
@@ -57,32 +50,16 @@ public class PostController extends BaseController{
 		return "admin/post_edit";
 	}
 
-	@RequestMapping("/pageinfo")
+	@RequestMapping("/list")
 	@ResponseBody
 	public  Map<String,Object> postList(QueryRequest request){
-		PageHelper.startPage(request.getPageNum(),request.getPageSize());
-//		Pageable pageable = new PageRequest(request.getPageNum(),request.getPageSize());
-//		Page<Post> postList = postService.findAllPosts(pageable);
-//		PageInfo<Post> pageInfo = new PageInfo<>(postList);
-//		Pageable pageable = PageRequest.of(request.getPageNum(),request.getPageSize());
-//		Page<Post> postPage = postService.findAllPosts(pageable);
-		PageInfo<Post> pageInfo = new PageInfo<>(GetPostList());
+
+		// JPA的分页是从0开始
+		Pageable pageable = PageRequest.of(request.getPageNum()-1,request.getPageSize());
+		Page<Post> postPage = postService.findAllPosts(pageable);
+		PageInfo<Post> pageInfo = new PageInfo<>(postPage.getContent());
 		return getDataTable(pageInfo);
 	}
-
-	public List<Post> GetPostList() {
-		List<Post> postList = new ArrayList<Post>();
-		Post post1 = new Post();
-		post1.setPostId(8L);
-		post1.setPostContent("XX");
-		postList.add(post1);
-		Post post2 = new Post();
-		post2.setPostId(7L);
-		post2.setPostContent("YY");
-		postList.add(post2);
-		return postList;
-	}
-
 
 }
 
