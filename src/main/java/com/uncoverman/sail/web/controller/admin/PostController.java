@@ -56,9 +56,9 @@ public class PostController extends BaseController{
 
 		// JPA的分页是从0开始
 		Pageable pageable = PageRequest.of(request.getPageNum()-1,request.getPageSize());
-		Page<Post> postPage = postService.findAllPosts(pageable);
-		PageInfo<Post> pageInfo = new PageInfo<>(postPage.getContent());
-		return getDataTable(pageInfo);
+		Page<Post> posts = postService.findAllPosts(pageable);
+		return getDataTable(posts);
+
 	}
 
 }
