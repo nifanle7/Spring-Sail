@@ -16,27 +16,6 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-				<table class="table" id="table">
-					<thead>
-						<tr>
-							<th>操作</th>
-							<th>标题</th>
-							<th>URL</th>
-							<th>摘要</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr  th:each="post : ${postList}">
-							<td>
-								<button class="btn btn-primary btn-sm" onclick="#">修改</button>
-								<button class="btn btn-danger btn-sm" onclick="#">删除</button>
-							</td>
-							<td th:text="${post.postTitle}">标题</td>
-							<td th:text="${post.postUrl}">标题</td>
-							<td th:text="${post.postSummary}">摘要</td>
-						</tr>
-					</tbody>
-				</table>
 				<div class="panel-body" style="padding-bottom:0px;">
 					<div class="panel panel-default">
 						<div class="panel-heading">查询条件</div>
