@@ -32,9 +32,7 @@ public class PostController extends BaseController{
 	private PostService postService;
 
 	@RequestMapping("")
-	public String index(HttpServletRequest request) {
-		List<Post> postList = postService.findAllPosts();
-		request.setAttribute("postList",postList);
+	public String index() {
 		return "admin/post_list";
 	}
 
@@ -59,6 +57,13 @@ public class PostController extends BaseController{
 		Page<Post> posts = postService.findAllPosts(pageable);
 		return getDataTable(posts);
 
+	}
+
+	@RequestMapping("/delete")
+	@ResponseBody
+	public ResponseBo delete(){
+
+		return ResponseBo.ok("删除成功");
 	}
 
 }
