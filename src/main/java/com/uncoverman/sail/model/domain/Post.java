@@ -1,10 +1,8 @@
 package com.uncoverman.sail.model.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_post")
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

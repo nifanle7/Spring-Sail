@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "t_comment")
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment implements Serializable{

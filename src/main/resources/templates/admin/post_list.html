@@ -145,17 +145,16 @@ function deleteRows() {
         alert('请至少选中一行记录');
         return false;
     }
-    var ids = "";
+    var postIds = "";
     for (var i = 0; i < selected.length; i++) {
-        ids += selected[i].postId;
-        if (i != (selected.length - 1)) ids += ",";
+        postIds += selected[i].postId;
+        if (i != (selected.length - 1)) postIds += ",";
     }
-
     $MB.confirm({
         text: "确定删除选中的记录？",
         confirmButtonText: "确定删除"
     }, function() {
-        $.post('admin/post/delete', { "ids": ids }, function(r) {
+        $.post("post/delete", { "postIds": postIds }, function(r) {
             if (r.code == 0) {
                 alert(r.msg);
                 refresh();
