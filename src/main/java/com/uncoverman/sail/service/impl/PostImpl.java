@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class PostImpl implements PostService {
@@ -40,7 +43,8 @@ public class PostImpl implements PostService {
 	}
 
 	@Override
-	public void deleteByPostId(Long[] postIds) {
+	@Transactional
+	public void deleteByPostIdIn(List<Long> postIds) {
 		postRepository.deleteByPostIdIn(postIds);
 	}
 

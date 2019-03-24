@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -47,7 +50,7 @@ public class PostController extends BaseController{
 	public  Map<String,Object> postList(QueryRequest request){
 
 		// JPA的分页是从0开始
-		Pageable pageable = PageRequest.of(request.getPageNum()-1,request.getPageSize());
+		Pageable pageable = PageRequest.of(request.getPageNum()-1,request.getPageSize(), Sort.by("postId").ascending());
 		Page<Post> posts = postService.findAll(pageable);
 		return getDataTable(posts);
 
@@ -55,8 +58,13 @@ public class PostController extends BaseController{
 
 	@RequestMapping("/delete")
 	@ResponseBody
-	public ResponseBo delete(@RequestParam("postIds") Long[] postIds){
-		postService.deleteByPostId(postIds);
+	public ResponseBo delete(String postIds){
+		String [] postIdStr = postIds.split(",");
+		List<Long> postIdList = new ArrayList<>();
+		for (String str:postIdStr){
+			postIdList.add(Long.valueOf(str));
+		}
+		postService.deleteByPostIdIn(postIdList);
 		return ResponseBo.ok("删除成功");
 	}
 

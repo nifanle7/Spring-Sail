@@ -10,9 +10,9 @@
 	<script src="/js/common.js"></script>
 	<script src="/plugin/sweetalert2/sweetalert2.js"></script>
 	<script src="/plugin/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-	<link href="/plugin/bootstrap-table/bootstrap-table.css" rel="stylesheet">
-	<link href="/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/plugin/sweetalert2/sweetalert2.css" rel="stylesheet">
+	<link rel="stylesheet" href="/plugin/bootstrap-table/bootstrap-table.css">
+	<link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/plugin/sweetalert2/sweetalert2.css">
 
 </head>
 <body>
@@ -38,14 +38,14 @@
 					</div>
 
 					<div id="toolbar" class="btn-group">
-						<button id="btn_add" type="button" class="btn btn-default">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						<button id="btn_add" type="button" class="btn btn-default" onclick="addRow();">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
 						<button id="btn_edit" type="button" class="btn btn-default">
-							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</button>
 						<button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRows();">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
 					</div>
 				<table id="postTable" data-mobile-responsive="true"></table>
@@ -57,14 +57,12 @@
 </body>
 
 <script>
+
 $(function() {
+
 	// 初始化表格
 	var bTable = new TableInit();
 	bTable.Init();
-
-    //初始化Button的点击事件
-    var bButtonInit = new ButtonInit();
-    bButtonInit.Init();
 
 });
 
@@ -129,15 +127,22 @@ var TableInit = function () {
 
 };
 
-var ButtonInit = function () {
-    var bInit = new Object();
-
-    bInit.Init = function () {
-        //初始化页面上面的按钮事件
-    };
-
-    return bInit;
-};
+function addRow() {
+    $.ajax({
+        url:"/admin/post/addPage",
+        type:"post",
+        data:$("#postForm").serialize(),//formId
+        dataType: "json",//预期服务器返回的数据类型
+        contentType: "application/x-www-form-urlencoded",//自动封装为对象，不能application/json
+        success: function (result) {
+            if (result.code="0") {
+                alert(result.msg);
+            } else {
+                alert("失败");
+            }
+        }
+    });
+}
 
 function deleteRows() {
     var selected = $('#postTable').bootstrapTable('getSelections');
@@ -154,7 +159,7 @@ function deleteRows() {
         text: "确定删除选中的记录？",
         confirmButtonText: "确定删除"
     }, function() {
-        $.post("post/delete", { "postIds": postIds }, function(r) {
+        $.post("/admin/post/delete", { "postIds": postIds }, function(r) {
             if (r.code == 0) {
                 alert(r.msg);
                 refresh();
