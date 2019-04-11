@@ -12,9 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,14 +36,14 @@ public class PostController extends BaseController{
 
 	@RequestMapping("/add")
 	@ResponseBody
-	public ResponseBo save(@ModelAttribute Post post, HttpSession httpSession) {
+	public ResponseBo save(@ModelAttribute Post post) {
 		postService.save(post);
 		return ResponseBo.ok("新增成功");
 	}
 
 	@RequestMapping("/addPage")
 	public String addPage() {
-		return "admin/post_edit";
+		return "admin/post_add";
 	}
 
 	@RequestMapping("/list")

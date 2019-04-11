@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<!--引入bootstrap、bootstrap-table、jquery-->
-	<script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
-	<script src="http://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
-	<script src="/plugin/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="/plugins/jquery/jquery.min.js"></script>
+	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/plugins/bootstrap-table/bootstrap-table.min.js"></script>
 	<script src="/js/common.js"></script>
-	<script src="/plugin/sweetalert2/sweetalert2.js"></script>
-	<script src="/plugin/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-	<link rel="stylesheet" href="/plugin/bootstrap-table/bootstrap-table.css">
-	<link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/plugin/sweetalert2/sweetalert2.css">
+	<script src="/plugins/sweetalert2/sweetalert2.js"></script>
+	<script src="/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	<link rel="stylesheet" href="/plugins/bootstrap-table/bootstrap-table.css">
+	<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.css">
 
 </head>
 <body>

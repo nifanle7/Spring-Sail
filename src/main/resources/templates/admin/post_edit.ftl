@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
-    <link href="http://how2j.cn/study/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <script src="http://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 </head>
 <body>
