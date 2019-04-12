@@ -33,7 +33,7 @@
                     <label for="postContent">内容</label>
                     <textarea name="postContent" class="form-control" placeholder="内容" id="postContent"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="editPost();" data-toggle="modal" data-target="#myModal">保存</button>
+                <button type="submit" class="btn btn-primary" onclick="savePost();" data-toggle="modal" data-target="#myModal">保存</button>
             </form>
         </div>
     </div>
@@ -41,9 +41,9 @@
 </body>
 
 <script type="application/javascript">
-    function editPost() {
+    function savePost() {
         $.ajax({
-            url:"/admin/post/edit",
+            url:"/admin/post/add",
             type:"post",
             data:$("#postForm").serialize(),//formId
             dataType: "json",//预期服务器返回的数据类型

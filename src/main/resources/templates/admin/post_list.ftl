@@ -41,7 +41,7 @@
 						<button id="btn_add" type="button" class="btn btn-default" onclick="addRow();">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
-						<button id="btn_edit" type="button" class="btn btn-default">
+						<button id="btn_edit" type="button" class="btn btn-default" onclick="editRow();">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</button>
 						<button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRows();">
@@ -128,20 +128,17 @@ var TableInit = function () {
 };
 
 function addRow() {
-    $.ajax({
-        url:"/admin/post/addPage",
-        type:"post",
-        data:$("#postForm").serialize(),//formId
-        dataType: "json",//预期服务器返回的数据类型
-        contentType: "application/x-www-form-urlencoded",//自动封装为对象，不能application/json
-        success: function (result) {
-            if (result.code="0") {
-                alert(result.msg);
-            } else {
-                alert("失败");
-            }
-        }
-    });
+    window.location.href="/admin/post/addPage";
+}
+
+function editRow() {
+    var selected = $('#postTable').bootstrapTable('getSelections');
+    if (selected.length == 1) {
+        window.location.href="/admin/post/editPage?postId="+selected[0].postId;
+    }else {
+        alert('请选中选中一行记录');
+        return false;
+    }
 }
 
 function deleteRows() {
@@ -162,7 +159,7 @@ function deleteRows() {
         $.post("/admin/post/delete", { "postIds": postIds }, function(r) {
             if (r.code == 0) {
                 alert(r.msg);
-                refresh();
+                window.location.reload();
             } else {
                 alert(r.msg);
             }

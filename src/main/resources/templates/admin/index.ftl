@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/plugins/sweetalert2/sweetalert2.js"></script>
+    <script src="/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="/plugins/bootstrap-table/bootstrap-table.css">
+    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <#include "sider.ftl">
+</body>
+</html>

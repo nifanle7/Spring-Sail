@@ -12,8 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -55,6 +57,19 @@ public class PostController extends BaseController{
 		Page<Post> posts = postService.findAll(pageable);
 		return getDataTable(posts);
 
+	}
+
+	@RequestMapping("/editPage")
+	public String editPage(@RequestParam("postId") Long postId, Model model) {
+		Post post = postService.findByPostId(postId);
+		model.addAttribute("post",post);
+		return "admin/post_edit";
+	}
+
+	@RequestMapping("/edit")
+	public ResponseBo update(Post post){
+		postService.update(post);
+		return ResponseBo.ok("修改成功");
 	}
 
 	@RequestMapping("/delete")
