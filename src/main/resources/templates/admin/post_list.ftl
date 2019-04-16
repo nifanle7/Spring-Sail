@@ -1,63 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<!--引入bootstrap、bootstrap-table、jquery-->
-	<script src="/plugins/jquery/jquery.min.js"></script>
-	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-	<script src="/js/common.js"></script>
-	<script src="/plugins/sweetalert2/sweetalert2.js"></script>
-	<script src="/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-	<link rel="stylesheet" href="/plugins/bootstrap-table/bootstrap-table.css">
-	<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.css">
+<#include "module/macro.ftl">
+<@header></@header>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 column">
+            <div class="panel-body" style="padding-bottom:0px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">查询条件</div>
+                    <div class="panel-body">
+                        <form id="formSearch" class="form-horizontal">
+                            <div class="form-group" style="margin-top:15px">
+                                <label class="control-label col-sm-1" for="postTitle">文章名称</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="postTitle">
+                                </div>
+                                <div class="col-sm-4" style="text-align:left;">
+                                    <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-</head>
-<body>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="col-md-12 column">
-				<div class="panel-body" style="padding-bottom:0px;">
-					<div class="panel panel-default">
-						<div class="panel-heading">查询条件</div>
-						<div class="panel-body">
-							<form id="formSearch" class="form-horizontal">
-								<div class="form-group" style="margin-top:15px">
-									<label class="control-label col-sm-1" for="postTitle">文章名称</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="postTitle">
-									</div>
-									<div class="col-sm-4" style="text-align:left;">
-										<button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
+                <div id="toolbar" class="btn-group">
+                    <button id="btn_add" type="button" class="btn btn-default" onclick="addRow();">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                    <button id="btn_edit" type="button" class="btn btn-default" onclick="editRow();">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRows();">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+            <table id="postTable" data-mobile-responsive="true"></table>
 
-					<div id="toolbar" class="btn-group">
-						<button id="btn_add" type="button" class="btn btn-default" onclick="addRow();">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						</button>
-						<button id="btn_edit" type="button" class="btn btn-default" onclick="editRow();">
-							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-						</button>
-						<button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRows();">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-						</button>
-					</div>
-				<table id="postTable" data-mobile-responsive="true"></table>
+        </div>
+    </div>
+</div>
 
-			</div>
-		</div>
-	</div>
-
-</body>
-
+<@footer>
 <script>
-
 $(function() {
 
 	// 初始化表格
@@ -167,5 +149,4 @@ function deleteRows() {
     });
 };
 </script>
-
-</html>
+</@footer>

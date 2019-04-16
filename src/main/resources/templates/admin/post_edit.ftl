@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="/plugins/jquery/jquery.min.js"></script>
-    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-</head>
-<body>
+<#include "module/macro.ftl">
+<@header></@header>
 
 <div class="container">
     <div class="row clearfix">
@@ -33,15 +23,15 @@
                     <label for="postContent">内容</label>
                     <textarea name="postContent" class="form-control" placeholder="内容" id="postContent"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="editPost();" data-toggle="modal" data-target="#myModal">保存</button>
+                <button type="submit" class="btn btn-primary" onclick="savePost();">保存</button>
             </form>
         </div>
     </div>
 </div>
-</body>
 
+<@footer>
 <script type="application/javascript">
-    function editPost() {
+    function savePost() {
         $.ajax({
             url:"/admin/post/edit",
             type:"post",
@@ -58,4 +48,4 @@
         });
     }
 </script>
-</html>
+</@footer>
