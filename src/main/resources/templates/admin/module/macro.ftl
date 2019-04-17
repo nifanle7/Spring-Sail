@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.css">
     <link rel="stylesheet" href="/css/AdminLTE.css">
     <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css">
+
     <title>Sail</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
