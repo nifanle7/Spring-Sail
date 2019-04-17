@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
     <title>Sail</title>
 </head>
-<body class="hold-transition skin-blue">
+<body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <#include "header.ftl">
         <#include "sidebar.ftl">

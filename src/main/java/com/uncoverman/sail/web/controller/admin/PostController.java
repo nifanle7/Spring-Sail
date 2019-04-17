@@ -67,7 +67,7 @@ public class PostController extends BaseController{
 	}
 
 	@RequestMapping("/edit")
-	public ResponseBo update(Post post){
+	public ResponseBo update(@ModelAttribute Post post){
 		postService.update(post);
 		return ResponseBo.ok("修改成功");
 	}

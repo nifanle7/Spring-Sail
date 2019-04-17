@@ -1,8 +1,8 @@
 <#include "module/macro.ftl">
 <@header></@header>
 
-<div class="container">
-    <div class="row clearfix">
+<div class="container-fluid">
+    <div class="row-fluid">
         <div class="col-md-12 column">
             <form id="postForm">
                 <div class="form-group">
@@ -44,6 +44,9 @@
                 } else {
                     alert("失败");
                 }
+            },
+            failed:function (result) {
+                alert("异常");
             }
         });
     }
