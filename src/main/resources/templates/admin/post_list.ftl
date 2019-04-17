@@ -9,12 +9,11 @@
                     <div class="panel-body">
                         <form id="formSearch" class="form-horizontal">
                             <div class="form-group" style="margin-top:15px">
-                                <label class="control-label col-sm-1" for="postTitle">文章名称</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="postTitle">
+                                    <input type="text" class="form-control" id="postTitle" placeholder="文章名称">
                                 </div>
                                 <div class="col-sm-4" style="text-align:left;">
-                                    <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+                                    <button type="button" id="btn_query" class="btn btn-primary">查询</button>
                                 </div>
                             </div>
                         </form>
@@ -33,7 +32,7 @@
                     </button>
                 </div>
             <table id="postTable" data-mobile-responsive="true"></table>
-
+            </div>
         </div>
     </div>
 </div>
