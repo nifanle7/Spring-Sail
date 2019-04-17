@@ -45,7 +45,7 @@
                 } else {
                     alert("失败");
                 }
-            }，
+            },
              failed:function (result) {
                  alert("异常");
              }
