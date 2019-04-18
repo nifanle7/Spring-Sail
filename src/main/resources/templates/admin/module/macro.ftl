@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/AdminLTE.css">
     <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/plugins/simplemde/simplemde.min.css">
 
     <title>Sail</title>
 </head>
@@ -34,6 +35,7 @@
 <script src="/js/common.js"></script>
 <script src="/plugins/sweetalert2/sweetalert2.js"></script>
 <script src="/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="/plugins/simplemde/simplemde.min.js"></script>
 <script src="/js/adminlte.min.js"></script>
 <#nested />
 </html>
