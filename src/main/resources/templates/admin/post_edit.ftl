@@ -24,6 +24,15 @@
                     <label for="postContent">内容</label>
                     <textarea name="postContent" class="form-control" placeholder="内容" id="postContent">${post.postContent}</textarea>
                 </div>
+
+                <div class="box box-primary">
+                    <!-- Editor.md编辑器 -->
+                    <div class="box-body pad">
+                        <div id="markdown-editor">
+                            <textarea id="editorarea" style="display:none;">${post.postContentMd}</textarea>
+                        </div>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary" onclick="savePost();">保存</button>
             </form>
         </div>
@@ -51,5 +60,32 @@
              }
         });
     }
+
+    /**
+     * 加载编辑器
+     */
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("editorarea"),
+        autoDownloadFontAwesome: false,
+        autofocus: true,
+        autosave: {
+            enabled: true,
+            uniqueId: "editor-temp",
+            delay: 10000
+        },
+        renderingConfig: {
+            codeSyntaxHighlighting: true
+        },
+        previewRender: function(plainText) {
+            var preview = document.getElementsByClassName("editor-preview-side")[0];
+            preview.innerHTML = this.parent.markdown(plainText);
+            preview.setAttribute('id','editor-preview');
+//            MathJax.Hub.Queue(["Typeset",MathJax.Hub,"editor-preview"]);
+            return preview.innerHTML;
+        },
+        showIcons: ["code", "table"],
+        status: ["autosave", "lines", "words"],
+        tabSize: 4
+    });
 </script>
 </@footer>
