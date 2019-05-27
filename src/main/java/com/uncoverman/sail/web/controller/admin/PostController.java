@@ -44,16 +44,16 @@ public class PostController extends BaseController{
 
 	}
 
+	@GetMapping("/addPage")
+	public String addPage() {
+		return "admin/post_add";
+	}
+
 	@PostMapping("/add")
 	@ResponseBody
 	public ResponseBo save(@ModelAttribute Post post) {
 		postService.save(post);
 		return ResponseBo.ok("新增成功");
-	}
-
-	@GetMapping("/addPage")
-	public String addPage() {
-		return "admin/post_add";
 	}
 
 	@GetMapping("/editPage")
