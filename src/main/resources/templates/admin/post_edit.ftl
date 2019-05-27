@@ -9,27 +9,27 @@
                 <div class="form-group">
                     <label for="postTitle">标题</label>
                     <div>
-                        <input name="postTitle" type="text" class="form-control" placeholder="标题" id="postTitle" value="${post.postTitle}">
+                        <input name="postTitle" type="text" class="form-control" placeholder="标题" id="postTitle" value="${post.postTitle!}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="postUrl">链接</label>
-                    <input name="postUrl" type="text" class="form-control" placeholder="固定链接" id="postUrl" value="${post.postUrl}">
+                    <input name="postUrl" type="text" class="form-control" placeholder="固定链接" id="postUrl" value="${post.postUrl!}">
                 </div>
                 <div class="form-group">
                     <label for="postSummary">摘要</label>
-                    <input name="postSummary" type="text" class="form-control" placeholder="摘要" id="postSummary" value="${post.postSummary}">
+                    <input name="postSummary" type="text" class="form-control" placeholder="摘要" id="postSummary" value="${post.postSummary!}">
                 </div>
                 <div class="form-group">
                     <label for="postContent">内容</label>
-                    <textarea name="postContent" class="form-control" placeholder="内容" id="postContent">${post.postContent}</textarea>
+                    <textarea name="postContent" class="form-control" placeholder="内容" id="postContent">${post.postContent!}</textarea>
                 </div>
 
                 <div class="box box-primary">
                     <!-- Editor.md编辑器 -->
                     <div class="box-body pad">
                         <div id="markdown-editor">
-                            <textarea id="editorarea" style="display:none;">${post.postContentMd}</textarea>
+                            <textarea id="editorarea" style="display:none;">${post.postContentMd!}</textarea>
                         </div>
                     </div>
                 </div>
