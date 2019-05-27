@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,6 +32,12 @@ public class Post implements Serializable{
 	private String postThumbnail;
 
 	private String postUrl;
+
+	private String postStatus;
+
+	private Date postCreateTime;
+
+	private Date postUpdateTime;
 
 	@ManyToMany
 	@JoinTable(name = "t_post_category",
