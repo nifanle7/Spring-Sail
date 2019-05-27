@@ -13,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,24 +28,12 @@ public class PostController extends BaseController{
 	@Autowired
 	private PostService postService;
 
-	@RequestMapping("")
+	@GetMapping("")
 	public String index() {
 		return "admin/post_list";
 	}
 
-	@RequestMapping("/add")
-	@ResponseBody
-	public ResponseBo save(@ModelAttribute Post post) {
-		postService.save(post);
-		return ResponseBo.ok("新增成功");
-	}
-
-	@RequestMapping("/addPage")
-	public String addPage() {
-		return "admin/post_add";
-	}
-
-	@RequestMapping("/list")
+	@PostMapping("/list")
 	@ResponseBody
 	public  Map<String,Object> postList(QueryRequest request){
 
@@ -59,20 +44,32 @@ public class PostController extends BaseController{
 
 	}
 
-	@RequestMapping("/editPage")
+	@PostMapping("/add")
+	@ResponseBody
+	public ResponseBo save(@ModelAttribute Post post) {
+		postService.save(post);
+		return ResponseBo.ok("新增成功");
+	}
+
+	@GetMapping("/addPage")
+	public String addPage() {
+		return "admin/post_add";
+	}
+
+	@GetMapping("/editPage")
 	public String editPage(@RequestParam("postId") Long postId, Model model) {
 		Post post = postService.findByPostId(postId);
 		model.addAttribute("post",post);
 		return "admin/post_edit";
 	}
 
-	@RequestMapping("/edit")
+	@PostMapping("/edit")
 	public ResponseBo update(@ModelAttribute Post post){
 		postService.update(post);
 		return ResponseBo.ok("修改成功");
 	}
 
-	@RequestMapping("/delete")
+	@PostMapping("/delete")
 	@ResponseBody
 	public ResponseBo delete(String postIds){
 		String [] postIdStr = postIds.split(",");
