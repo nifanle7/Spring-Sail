@@ -3,6 +3,7 @@ package com.uncoverman.sail.service.impl;
 import com.uncoverman.sail.model.domain.Post;
 import com.uncoverman.sail.repository.PostRepository;
 import com.uncoverman.sail.service.PostService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +28,6 @@ public class PostImpl implements PostService {
 		return postRepository.findAll(pageable);
 	}
 
-
 	@Override
 	public Page<Post> search(Post post, Pageable pageable){
 		// Root：查询哪个表，哪个实例对象
@@ -35,7 +35,7 @@ public class PostImpl implements PostService {
 		// CriteriaBuilder：字段之间是什么关系，如何生成一个查询条件，每一个查询条件都是什么方式，比如两个查询条件是and的关系还是or的关系等
 		return postRepository.findAll((Root<Post> root, CriteriaQuery<?> CriteriaQuery,CriteriaBuilder criteriaBuilder)->{
 			Predicate predicate = null;
-			if (post.getPostTitle() != null){
+			if (StringUtils.isBlank(post.getPostTitle())){
 				predicate = criteriaBuilder.equal(root.get("postTitle"),post.getPostTitle());
 			}
 			return predicate;

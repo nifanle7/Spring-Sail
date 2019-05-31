@@ -10,7 +10,7 @@
                         <form id="formSearch" class="form-horizontal">
                             <div class="form-group" style="margin-top:15px">
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="postTitle" placeholder="文章名称">
+                                    <input type="text" class="form-control" id="searchText" placeholder="文章名称">
                                 </div>
                                 <div class="col-sm-4" style="text-align:left;">
                                     <button type="button" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
@@ -70,7 +70,7 @@ var TableInit = function () {
             showRefresh: true,                  				//是否显示刷新按钮
             minimumCountColumns: 2,             				//最少允许的列数
             clickToSelect: true,                				//是否启用点击选中行
-            height: 500,                        				//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            //height: 500,                        				//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "postId",                 				//每一行的唯一标识，一般为主键列
             showToggle: false,                  				//是否显示详细视图和列表视图的切换按钮
             cardView: false,                    				//是否显示详细视图
@@ -100,13 +100,25 @@ var TableInit = function () {
         var temp = {   //这里的键的名字和控制器的变量名必须一致
             pageSize: params.limit,   //页面大小，变量名与控制器一致
             pageNum: params.offset / params.limit + 1, //页码，变量名与控制器一致
-            postTitle: $("#postTitle").val(),
+            postTitle: $("#searchText").val(),
         };
         return temp;
     };
     return bTableInit;
 
 };
+
+function search() {
+//    var opt = {
+//        url:'/admin/post/search',
+//        silent:true,
+//        query:{
+//            postTitle:$('#searchText').val
+//        }
+//    }
+//    $('#postTable').bootstrapTable('destroy');
+//    $('#postTable').bootstrapTable('refresh');
+}
 
 function addRow() {
     window.location.href="/admin/post/toAdd";
