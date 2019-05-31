@@ -1,8 +1,6 @@
 package com.uncoverman.sail.common.controller;
 
-import com.github.pagehelper.PageInfo;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.HashMap;
 import java.util.Map;

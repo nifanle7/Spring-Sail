@@ -30,6 +30,9 @@ public class PostImpl implements PostService {
 
 	@Override
 	public Page<Post> search(Post post, Pageable pageable){
+		// Root：查询哪个表，哪个实例对象
+		// CriteriaQuery：查询哪些字段，排序是什么（这里暂时没有用上）
+		// CriteriaBuilder：字段之间是什么关系，如何生成一个查询条件，每一个查询条件都是什么方式，比如两个查询条件是and的关系还是or的关系等
 		return postRepository.findAll((Root<Post> root, CriteriaQuery<?> CriteriaQuery,CriteriaBuilder criteriaBuilder)->{
 			Predicate predicate = null;
 			if (post.getPostTitle() != null){
