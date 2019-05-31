@@ -2,7 +2,6 @@ package com.uncoverman.sail.web.controller.admin;
 
 import com.uncoverman.sail.common.controller.BaseController;
 import com.uncoverman.sail.model.domain.Post;
-import com.uncoverman.sail.model.dto.QueryRequest;
 import com.uncoverman.sail.model.dto.ResponseBo;
 import com.uncoverman.sail.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,17 +34,29 @@ public class PostController extends BaseController{
 
 	@PostMapping("/list")
 	@ResponseBody
-	public  Map<String,Object> postList(QueryRequest request){
+	public Map<String,Object> postList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+									   @RequestParam(value = "PageSize", defaultValue = "10") Integer pageSize){
 
 		// JPA的分页是从0开始
-		Pageable pageable = PageRequest.of(request.getPageNum()-1,request.getPageSize(), Sort.by("postId").ascending());
+		Pageable pageable = PageRequest.of(pageNum-1,pageSize, Sort.by("postId").ascending());
 		Page<Post> posts = postService.findAll(pageable);
 		return getDataTable(posts);
 
 	}
 
-	@GetMapping("/addPage")
-	public String addPage() {
+	@PostMapping("/search")
+	@ResponseBody
+	public Map<String,Object> searchPost(@ModelAttribute Post post,
+										 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+										 @RequestParam(value = "PageSize", defaultValue = "10") Integer pageSize
+	){
+		Pageable pageable = PageRequest.of(pageNum-1,pageSize);
+		Page<Post> posts = postService.search(post,pageable);
+		return getDataTable(posts);
+	}
+
+	@GetMapping("/toAdd")
+	public String toAdd() {
 		return "admin/post_add";
 	}
 
@@ -56,14 +67,15 @@ public class PostController extends BaseController{
 		return ResponseBo.ok("新增成功");
 	}
 
-	@GetMapping("/editPage")
-	public String editPage(@RequestParam("postId") Long postId, Model model) {
+	@GetMapping("/toEdit")
+	public String toEdit(@RequestParam("postId") Long postId, Model model) {
 		Post post = postService.findByPostId(postId);
 		model.addAttribute("post",post);
 		return "admin/post_edit";
 	}
 
 	@PostMapping("/edit")
+	@ResponseBody
 	public ResponseBo update(@ModelAttribute Post post){
 		postService.update(post);
 		return ResponseBo.ok("修改成功");

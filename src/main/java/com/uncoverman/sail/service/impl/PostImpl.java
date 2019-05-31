@@ -9,6 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Service
@@ -17,9 +21,22 @@ public class PostImpl implements PostService {
 	@Autowired
 	private PostRepository postRepository;
 
+//	简单查询全部列表
 	@Override
 	public Page<Post> findAll(Pageable pageable) {
 		return postRepository.findAll(pageable);
+	}
+
+
+	@Override
+	public Page<Post> search(Post post, Pageable pageable){
+		return postRepository.findAll((Root<Post> root, CriteriaQuery<?> CriteriaQuery,CriteriaBuilder criteriaBuilder)->{
+			Predicate predicate = null;
+			if (post.getPostTitle() != null){
+				predicate = criteriaBuilder.equal(root.get("postTitle"),post.getPostTitle());
+			}
+			return predicate;
+		},pageable);
 	}
 
 	@Override

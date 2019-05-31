@@ -13,7 +13,7 @@
                                     <input type="text" class="form-control" id="postTitle" placeholder="文章名称">
                                 </div>
                                 <div class="col-sm-4" style="text-align:left;">
-                                    <button type="button" id="btn_query" class="btn btn-primary">查询</button>
+                                    <button type="button" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
                                 </div>
                             </div>
                         </form>
@@ -64,9 +64,9 @@ var TableInit = function () {
             pageNumber: 1,                      				//初始化加载第一页，默认第一页
             pageSize: 10,                       				//每页的记录行数（*）
             pageList: [10, 50, 100, 500],        				//可供选择的每页的行数（*）
-            search: true,                       				//是否显示表格搜索，此搜索是客户端搜索，不会进服务端，感觉意义不大
-            strictSearch: true,
-            showColumns: true,                  				//是否显示所有的列
+            search: false,                       				//是否显示表格搜索，此搜索是客户端搜索，不会进服务端，感觉意义不大
+            strictSearch: false,
+            showColumns: false,                  				//是否显示所有的列
             showRefresh: true,                  				//是否显示刷新按钮
             minimumCountColumns: 2,             				//最少允许的列数
             clickToSelect: true,                				//是否启用点击选中行
@@ -109,13 +109,13 @@ var TableInit = function () {
 };
 
 function addRow() {
-    window.location.href="/admin/post/addPage";
+    window.location.href="/admin/post/toAdd";
 }
 
 function editRow() {
     var selected = $('#postTable').bootstrapTable('getSelections');
     if (selected.length == 1) {
-        window.location.href="/admin/post/editPage?postId="+selected[0].postId;
+        window.location.href="/admin/post/toEdit?postId="+selected[0].postId;
     }else {
         alert('请选中选中一行记录');
         return false;

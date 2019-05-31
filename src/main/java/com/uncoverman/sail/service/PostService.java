@@ -9,6 +9,7 @@ import java.util.List;
 public interface PostService {
 
 	Page<Post> findAll(Pageable pageable);
+	Page<Post> search(Post post, Pageable pageable);
 	Post findByPostId(Long postId);
 	Post save(Post post);
 	void update(Post post);
