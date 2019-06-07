@@ -35,7 +35,7 @@ public class PostImpl implements PostService {
 		// CriteriaBuilder：字段之间是什么关系，如何生成一个查询条件，每一个查询条件都是什么方式，比如两个查询条件是and的关系还是or的关系等
 		return postRepository.findAll((Root<Post> root, CriteriaQuery<?> CriteriaQuery,CriteriaBuilder criteriaBuilder)->{
 			Predicate predicate = null;
-			if (StringUtils.isBlank(post.getPostTitle())){
+			if (StringUtils.isNotBlank(post.getPostTitle())){
 				predicate = criteriaBuilder.equal(root.get("postTitle"),post.getPostTitle());
 			}
 			return predicate;

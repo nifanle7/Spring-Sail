@@ -4,32 +4,12 @@
     <div class="row-fluid">
         <div class="col-md-12 column">
             <div class="panel-body" style="padding-bottom:0px;">
-                <#--<div class="panel panel-default">-->
-                    <#--<div class="panel-heading">查询条件</div>-->
-                    <#--<div class="panel-body">-->
-                        <#--<form id="formSearch" class="form-horizontal">-->
-                            <#--<div class="form-group" style="margin-top:15px">-->
-                                <#--<div class="col-sm-3">-->
-                                    <#--<input type="text" class="form-control" id="searchText" placeholder="文章名称">-->
-                                <#--</div>-->
-                                <#--<div class="col-sm-4" style="text-align:left;">-->
-                                    <#--<button type="button" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>-->
-                                <#--</div>-->
-                            <#--</div>-->
-                        <#--</form>-->
-                    <#--</div>-->
-                <#--</div>-->
-                <#--<div id="toolbar" class="btn-group">-->
-                    <#--<button id="btn_add" type="button" class="btn btn-default" onclick="addRow();">-->
-                        <#--<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>-->
-                    <#--</button>-->
-                    <#--<button id="btn_edit" type="button" class="btn btn-default" onclick="editRow();">-->
-                        <#--<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>-->
-                    <#--</button>-->
-                    <#--<button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRows();">-->
-                        <#--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
-                    <#--</button>-->
-                <#--</div>-->
+                <div class="demoTable">
+                    <div class="layui-inline">
+                        <input class="layui-input" name="id" id="postSearch" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
+                </div>
                 <table id="postTable" lay-filter="postTable"></table>
             </div>
         </div>
@@ -118,20 +98,25 @@
                 layer.msg('请至少选中一条记录');
             }
         }
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var postSearch = $('#postSearch');
+                //执行重载
+                table.reload('postTable', {
+                    url: '/admin/post/search',
+                    where: {
+                        postTitle: postSearch.val()
+                    }
+                });
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
-
-
-    function search() {
-    //    var opt = {
-    //        url:'/admin/post/search',
-    //        silent:true,
-    //        query:{
-    //            postTitle:$('#searchText').val
-    //        }
-    //    }
-    //    $('#postTable').bootstrapTable('destroy');
-    //    $('#postTable').bootstrapTable('refresh');
-    }
 
 </script>
 </@footer>
