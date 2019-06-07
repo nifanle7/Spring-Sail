@@ -36,8 +36,9 @@ public class PostImpl implements PostService {
 		return postRepository.findAll((Root<Post> root, CriteriaQuery<?> CriteriaQuery,CriteriaBuilder criteriaBuilder)->{
 			Predicate predicate = null;
 			if (StringUtils.isNotBlank(post.getPostTitle())){
-				predicate = criteriaBuilder.equal(root.get("postTitle"),post.getPostTitle());
-			}
+//				predicate = criteriaBuilder.equal(root.get("postTitle"),post.getPostTitle());
+                predicate = criteriaBuilder.like(root.get("postTitle").as(String.class),"%"+post.getPostTitle()+"%");
+            }
 			return predicate;
 		},pageable);
 	}

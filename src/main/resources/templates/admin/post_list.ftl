@@ -4,11 +4,11 @@
     <div class="row-fluid">
         <div class="col-md-12 column">
             <div class="panel-body" style="padding-bottom:0px;">
-                <div class="demoTable">
+                <div>
                     <div class="layui-inline">
-                        <input class="layui-input" name="id" id="postSearch" autocomplete="off">
+                        <input class="layui-input" name="searchTxt" id="searchTxt" autocomplete="off">
                     </div>
-                    <button class="layui-btn" data-type="reload">搜索</button>
+                    <button class="layui-btn" data-type="reload" id="searchBtn">搜索</button>
                 </div>
                 <table id="postTable" lay-filter="postTable"></table>
             </div>
@@ -101,18 +101,18 @@
 
         var $ = layui.$, active = {
             reload: function(){
-                var postSearch = $('#postSearch');
+                var searchTxt = $('#searchTxt');
                 //执行重载
                 table.reload('postTable', {
                     url: '/admin/post/search',
                     where: {
-                        postTitle: postSearch.val()
+                        postTitle: searchTxt.val()
                     }
                 });
             }
         };
 
-        $('.demoTable .layui-btn').on('click', function(){
+        $('#searchBtn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
