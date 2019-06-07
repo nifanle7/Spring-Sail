@@ -1,6 +1,6 @@
 package com.uncoverman.sail.web.controller.admin;
 
-import com.uncoverman.sail.common.controller.BaseController;
+import com.uncoverman.sail.common.Layui;
 import com.uncoverman.sail.model.domain.Post;
 import com.uncoverman.sail.model.dto.ResponseBo;
 import com.uncoverman.sail.service.PostService;
@@ -22,7 +22,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequestMapping("/admin/post")
-public class PostController extends BaseController{
+public class PostController{
 
 	@Autowired
 	private PostService postService;
@@ -34,25 +34,25 @@ public class PostController extends BaseController{
 
 	@PostMapping("/list")
 	@ResponseBody
-	public Map<String,Object> postList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-									   @RequestParam(value = "PageSize", defaultValue = "10") Integer pageSize){
+	public Map<String,Object> postList(@RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+									   @RequestParam(value = "limit", defaultValue = "10") Integer pageSize){
 
 		// JPA的分页是从0开始
 		Pageable pageable = PageRequest.of(pageNum-1,pageSize, Sort.by("postId").ascending());
 		Page<Post> posts = postService.findAll(pageable);
-		return getDataTable(posts);
+		return Layui.data(posts);
 
 	}
 
 	@PostMapping("/search")
 	@ResponseBody
 	public Map<String,Object> searchPost(@ModelAttribute Post post,
-										 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-										 @RequestParam(value = "PageSize", defaultValue = "10") Integer pageSize
+										 @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+										 @RequestParam(value = "limit", defaultValue = "10") Integer pageSize
 	){
 		Pageable pageable = PageRequest.of(pageNum-1,pageSize);
 		Page<Post> posts = postService.search(post,pageable);
-		return getDataTable(posts);
+		return Layui.data(posts);
 	}
 
 	@GetMapping("/toAdd")

@@ -5,6 +5,10 @@ import org.springframework.data.domain.Page;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 废弃
+ */
+
 public class BaseController {
 
 	protected Map<String, Object> getDataTable(Page<?> page) {
