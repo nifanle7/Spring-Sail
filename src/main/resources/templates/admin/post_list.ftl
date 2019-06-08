@@ -1,9 +1,9 @@
 <#include "module/macro.ftl">
 <@header></@header>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="col-md-12 column">
-            <div class="panel-body" style="padding-bottom:0px;">
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div>
                 <div>
                     <div class="layui-inline">
                         <input class="layui-input" name="searchTxt" id="searchTxt" autocomplete="off">
@@ -37,7 +37,7 @@
                 ,{field: 'postTitle', title: '标题', width:200}
                 ,{field: 'categories', title: '分类', width:100}
                 ,{field: 'tags', title: '标签', width:100}
-                ,{field: 'postUpdateTime', title: '时间', width:100}
+                ,{field: 'postUpdateTime', title: '时间', width:200}
             ]]
             ,toolbar: 'default'
 

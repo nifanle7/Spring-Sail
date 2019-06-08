@@ -14,6 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -50,11 +51,14 @@ public class PostImpl implements PostService {
 
 	@Override
 	public Post save(Post post) {
+		post.setPostCreateTime(new Date());
+		post.setPostUpdateTime(new Date());
 		return postRepository.save(post);
 	}
 
 	@Override
 	public void update(Post post) {
+		post.setPostUpdateTime(new Date());
 		postRepository.save(post);
 	}
 

@@ -1,0 +1,76 @@
+/*页眉*/
+
+.layui-layout-admin .layui-header {
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    color: #666;
+}
+
+.layui-logo{
+    display:none;
+}
+
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    background: #20222a;
+    top: 0 !important;
+    height: 2px;
+}
+
+.layui-layout-admin .layui-header a, .layui-layout-admin .layui-header i {
+    color: #20222a;
+}
+
+/*侧边栏*/
+
+.side {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.side-logo {
+    height: 60px;
+    top: 0;
+    left: 0;
+    z-index: 4000;
+    text-align: center;
+    border-bottom: 1px solid #333742;
+}
+
+.side-logo a {
+    display: block;
+    padding-top: 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size:18px;
+}
+
+.side .layui-side-scroll {
+    position: absolute;
+    top: 0;
+    padding-top: 60px;
+    left: 0;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
+.side-sm {
+    width: 50px;
+    text-align: center
+}
+
+.side-sm .t-t,.side-sm .t-ab,.side-sm .t-i,.side-sm .side-logo a span {
+    display: none
+}
+
+/*主体*/
+
+.layui-body-50 {
+    left: 50px;
+}
+
+/*页脚*/

@@ -9,33 +9,34 @@
 
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.css">
-    <link rel="stylesheet" href="/css/AdminLTE.css">
-    <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/plugins/simplemde/simplemde.min.css">
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/app.css">
 
     <title>Sail</title>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
         <#include "header.ftl">
         <#include "sidebar.ftl">
-        <div class="content-wrapper">
+        <div class="layui-body">
+            <div style="padding: 15px;">
     </#macro>
 
     <#macro footer>
+            </div>
         </div>
         <#include "footer.ftl">
     </div>
 </body>
 <script src="/plugins/jquery/jquery.min.js"></>
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="/js/common.js"></script>
 <script src="/plugins/sweetalert2/sweetalert2.js"></script>
 <script src="/plugins/simplemde/simplemde.min.js"></script>
-<script src="/js/adminlte.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
+<script src="/js/app.js"></script>
+
 <#nested />
 </html>
 </#macro>

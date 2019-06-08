@@ -1,21 +1,20 @@
-<aside class="main-sidebar">
-    <section class="sidebar">
-        <div class="user-panel">
-            <div class="pull-left image">
-
-            </div>
-            <div class="pull-left info">
-            </div>
-        </div>
-        <div>
-            <ul class="sidebar=menu" data-widget="tree">
-                <li>
-                    <a href="/admin/post/toAdd"><i class="fa fa-link"></i><span>发布博客</span></a>
-                </li>
-                <li>
-                    <a href="/admin/post"><i class="fa fa-link"></i><span>所有博客</span></a>
-                </li>
-            </ul>
-        </div>
-    </section>
-</aside>
+<div class="side layui-bg-black" id="sidebar-nav">
+    <div class="side-logo">
+        <h1><a href="/admin"><i class="fa fa-home"></i><span> Sail</span></a></h1>
+    </div>
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree layui-inline"  lay-filter="nav">
+            <li class="layui-nav-item">
+                <a class="nav-item-a" href="javascript:;">
+                    <i class="fa fa-fw fa-smile-o"></i><span>文章管理</span>
+                    <span class="layui-nav-more"></span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/admin/post"><i class="fa fa-circle-o fa-fw"></i><span>文章列表</span></a></dd>
+                    <dd><a href="/admin/post/toAdd"><i class="fa fa-circle-o fa-fw"></i><span>文章发布</span></a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>

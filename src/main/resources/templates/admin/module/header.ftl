@@ -1,12 +1,9 @@
-<header class="main-header">
-    <a href="/admin" class="logo">
-        <span class="logo-mini"><b>S</b>A</span>
-        <span class="logo-lg"><b>Sa</b>il</span>
-    </a>
-    <nav class="navbar navbar-static-top" role="navigation">
-        <#--顶部切换按钮-->
-        <a href="javascript:void(0)" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
-    </nav>
+<header class="layui-header">
+    <div class="layui-logo">
+        <h1><a href="/admin"><i class="fa fa-home"></i><span> Sail</span></a></h1>
+    </div>
+    <ul class="layui-nav layui-layout-left layui-hide-xs">
+        <li class="layui-nav-item side-switch layui-this"><a href="javascript:;"><i class="fa fa-dedent"></i></a></li>
+        <span class="layui-nav-bar" style="left: 47px; top: 58px; width: 0px; opacity: 0;"></span>
+    </ul>
 </header>

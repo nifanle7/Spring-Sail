@@ -1,27 +1,15 @@
 <#include "module/macro.ftl">
 <@header></@header>
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="col-md-12 column">
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md9">
             <form id="postForm">
-                <div class="form-group">
+                <div class="layui-form-item">
                     <label for="postTitle">标题</label>
                     <div>
                         <input name="postTitle" type="text" class="form-control" placeholder="标题" id="postTitle">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="postUrl">链接</label>
-                    <input name="postUrl" type="text" class="form-control" placeholder="固定链接" id="postUrl">
-                </div>
-                <div class="form-group">
-                    <label for="postSummary">摘要</label>
-                    <input name="postSummary" type="text" class="form-control" placeholder="摘要" id="postSummary">
-                </div>
-                <div class="form-group">
-                    <label for="postContent">内容</label>
-                    <textarea name="postContent" class="form-control" placeholder="内容" id="postContent"></textarea>
                 </div>
                 <div class="box box-primary">
                     <!-- Editor.md编辑器 -->
@@ -31,6 +19,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label for="">分类</label>
+                    <select name="categories" class="form-control" id="category"></select>
+                </div>
+                <div class="layui-form-item">
+                    <label for="">标签</label>
+                    <select name="tags" class="form-control" id="tags"></select>
+                </div>
+                <div class="layui-form-item">
+                    <label for="postUrl">链接</label>
+                    <input name="postUrl" type="text" class="form-control" placeholder="固定链接" id="postUrl">
+                </div>
+                <div class="layui-form-item">
+                    <label for="postSummary">摘要</label>
+                    <input name="postSummary" type="text" class="form-control" placeholder="摘要" id="postSummary">
+                </div>
                 <button type="submit" class="btn btn-primary" onclick="savePost();">保存</button>
             </form>
         </div>
@@ -39,6 +43,26 @@
 
 <@footer>
 <script type="application/javascript">
+
+    var form;
+
+    layui.use('form', function() {
+        form = layui.form;
+        loadTags();
+    });
+
+    function loadTags() {
+        $.ajax({
+            url:"/tag/list",
+            type:"post",
+            dataType: "json",//预期服务器返回的数据类型
+            success: function (result) {
+                //select加载数据
+                layer.msg(result);
+            }
+        });
+    }
+
     function savePost() {
         $.ajax({
             url:"/admin/post/add",
@@ -48,13 +72,13 @@
             contentType: "application/x-www-form-urlencoded",//自动封装为对象，不能application/json
             success: function (result) {
                 if (result.code="0") {
-                    alert(result.msg);
+                    layer.msg(result.msg);
                 } else {
-                    alert("失败");
+                    layer.msg("失败");
                 }
             },
             failed:function (result) {
-                alert("异常");
+                layer.msg("异常");
             }
         });
     }
