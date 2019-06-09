@@ -15,7 +15,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("admin/category/list")
+    @PostMapping("/admin/category/list")
     @ResponseBody
     public Map<String,Object> findAll(){
         Map<String,Object> r = new HashMap<>();

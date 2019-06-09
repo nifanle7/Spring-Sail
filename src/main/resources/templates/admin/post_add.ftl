@@ -21,11 +21,13 @@
                 </div>
                 <div class="layui-form-item">
                     <label for="">分类</label>
-                    <select name="categories" class="form-control" id="category"></select>
+                    <select name="category" class="form-control" id="category">
+                        <option>--请选择--</option>
+                    </select>
                 </div>
                 <div class="layui-form-item">
                     <label for="">标签</label>
-                    <select name="tags" class="form-control" id="tags"></select>
+                    <input type="text" name="tag" class="form-control" id="tag">
                 </div>
                 <div class="layui-form-item">
                     <label for="postUrl">链接</label>
@@ -48,17 +50,21 @@
 
     layui.use('form', function() {
         form = layui.form;
-        loadTags();
+        loadCategory();
     });
 
-    function loadTags() {
+
+    function loadCategory() {
         $.ajax({
-            url:"/tag/list",
+            url:"/admin/category/list",
             type:"post",
             dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json;charset=utf-8",
             success: function (result) {
                 //select加载数据
-                layer.msg(result);
+                for (var i = 0; i < result.length; i++) {
+                    $('#category').append("<option>" + result[i].categoryName + "</option>");
+                }
             }
         });
     }
